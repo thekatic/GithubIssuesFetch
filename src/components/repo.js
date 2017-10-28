@@ -54,8 +54,8 @@ class Repo extends React.Component {
       }
 
       that.close();
-    }, function(){
-      console.log('error');
+    }, function(error){
+      window.msg.error(error.message);
     });
   }
 

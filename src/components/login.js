@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { PageHeader, Grid, Row, Col, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import AlertContainer from 'react-alert';
+import {  Col, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 // Auth
 import { login } from './githubLogin';
@@ -37,44 +36,36 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
-        <AlertContainer ref={a => window.msg = a} />
-        <PageHeader className="text-center">GitHub login</PageHeader>
-        <Grid>
-          <Row>
-            <Col className="Login">
-              <form onSubmit={this.handleSubmit}>
-                <FormGroup controlId="email" bsSize="large">
-                  <ControlLabel>Email</ControlLabel>
-                  <FormControl
-                    autoFocus
-                    type="email"
-                    value={this.state.email}
-                    onChange={this.handleChange}
-                  />
-                </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
-                  <ControlLabel>Password</ControlLabel>
-                  <FormControl
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    type="password"
-                  />
-                </FormGroup>
-                <Button
-                  block
-                  bsSize="large"
-                  bsStyle="primary"
-                  disabled={!this.validateForm()}
-                  type="submit"
-                >
-                  Login
-                </Button>
-              </form>
-            </Col>
-          </Row>
-        </Grid>
-      </div>
+      <Col className="Login">
+        <form onSubmit={this.handleSubmit}>
+          <FormGroup controlId="email" bsSize="large">
+            <ControlLabel>Email</ControlLabel>
+            <FormControl
+              autoFocus
+              type="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+          </FormGroup>
+          <FormGroup controlId="password" bsSize="large">
+            <ControlLabel>Password</ControlLabel>
+            <FormControl
+              value={this.state.password}
+              onChange={this.handleChange}
+              type="password"
+            />
+          </FormGroup>
+          <Button
+            block
+            bsSize="large"
+            bsStyle="primary"
+            disabled={!this.validateForm()}
+            type="submit"
+          >
+            Login
+          </Button>
+        </form>
+      </Col>
     );
   }
 }

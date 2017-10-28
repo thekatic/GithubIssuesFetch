@@ -5,19 +5,18 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createHttpLink } from 'apollo-link-http';
 import { ApolloProvider } from 'react-apollo';
 import AlertContainer from 'react-alert';
-import { Col } from 'react-bootstrap';
-
-// Auth
-import { login } from './components/githubLogin';
+import Cookies from 'universal-cookie';
+import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
 
 // App.Components
 import Issues from './components/issues';
 import Login from './components/login';
 
 const cache = new InMemoryCache();
+const cookies = new Cookies();
 
 // Global.Auth
-let TOKEN = null;
+let TOKEN = cookies.get('github_token');
 
 const httpLink = createHttpLink({
   uri: 'https://api.github.com/graphql',
@@ -44,7 +43,7 @@ const client = new ApolloClient({
 class App extends Component {
   constructor () {
     super()
-    this.state = { login: false }
+    this.state = { login: !!TOKEN }
 
     this.logged = this.logged.bind(this)
   }
@@ -65,22 +64,37 @@ class App extends Component {
 
   logged(token) {
     TOKEN = token
+    cookies.set('github_token', token, { path: '/' });
     this.setState({ login: true })
   }
 
   render () {
-    // Log in state
+    let page = null;
+    let title = null;
+
     if (!this.state.login) {
-      return <Login callback={this.logged} />
+      title = 'GitHub login'
+      page = <Login callback={this.logged} />
+    } else {
+      title = 'Issues'
+      page = <ApolloProvider client={client}>
+          <Col md={12}>
+            <AlertContainer ref={a => window.msg = a} />
+            <Issues {...this.routeForIssues('tensorflow', 'tensorflow', 20)} />
+          </Col>
+        </ApolloProvider>
     }
 
     // Logged in, fetch from Github
-    return <ApolloProvider client={client}>
-        <Col md={12}>
-          <AlertContainer ref={a => window.msg = a} />
-          <Issues {...this.routeForIssues('tensorflow', 'tensorflow', 20)} />
-        </Col>
-      </ApolloProvider>
+    return <div>
+      <AlertContainer ref={a => window.msg = a} />
+      <PageHeader className="text-center">{title}</PageHeader>
+      <Grid>
+        <Row>
+          {page}
+        </Row>
+      </Grid>
+    </div>
   }
 }
 

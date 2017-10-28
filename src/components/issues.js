@@ -72,10 +72,7 @@ const withInfo = graphql(GetIssuesInfoQuery, {
         return fetchMore({
           variables: vars,
           updateQuery: (previousResult, {fetchMoreResult}) => {
-            console.log('asd');
             if (!fetchMoreResult.repositoryOwner.repository) {
-              // console.log('asd');
-              // this.state.msg.error('Some error message or component');
               return previousResult;
             }
             return fetchMoreResult;
