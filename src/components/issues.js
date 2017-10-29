@@ -186,6 +186,11 @@ class Issues extends React.Component {
               </tr>
             )
           }
+          {(() => {
+            if (this.state.issues.length == 0) {
+              return <tr><td colspan="4">Issue list is empty</td></tr>
+            }
+          })()}
         </tbody>
       </Table>
       <Pager>
