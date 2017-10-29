@@ -39,6 +39,11 @@ const client = new ApolloClient({
   cache
 });
 
+const alertOptions = {
+  position: 'bottom right',
+  time: 10000
+}
+
 // App
 class App extends Component {
   constructor () {
@@ -46,11 +51,6 @@ class App extends Component {
     this.state = { login: !!TOKEN }
 
     this.logged = this.logged.bind(this)
-  }
-
-  alertOptions = {
-    position: 'bottom right',
-    time: 10000
   }
 
   routeForIssues (login, name, perPage) {
@@ -61,10 +61,6 @@ class App extends Component {
       name,
       perPage
     }
-  }
-
-  componentDidMount () {
-    //
   }
 
   logged(token) {
@@ -84,7 +80,6 @@ class App extends Component {
       title = 'Issues'
       page = <ApolloProvider client={client}>
           <Col md={12}>
-            <AlertContainer ref={a => window.msg = a} />
             <Issues {...this.routeForIssues('tensorflow', 'tensorflow', 20)} />
           </Col>
         </ApolloProvider>
@@ -92,7 +87,7 @@ class App extends Component {
 
     // Logged in, fetch from Github
     return <div>
-      <AlertContainer ref={a => window.msg = a} {...this.alertOptions} />
+      <AlertContainer ref={a => window.msg = a} {...alertOptions} />
       <PageHeader className="text-center">{title}</PageHeader>
       <Grid>
         <Row>
