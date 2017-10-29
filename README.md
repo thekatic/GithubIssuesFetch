@@ -10,6 +10,12 @@ Tableview of issues listed in the [tensorflow/tensorflow](https://github.com/ten
 - [x] Support changing the repository
 - [x] OAuth authentication
 
+Additional
+
+* Alerts
+* Form validation
+* Token stored in cookie
+
 ## Run
 
 Basic, without additional configuration
