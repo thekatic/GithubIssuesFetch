@@ -189,7 +189,7 @@ class Issues extends React.Component {
         </tbody>
       </Table>
       <Pager>
-        <Pager.Item previous disabled={!this.state.hasPrev} href="#" onClick={this.goto.bind(false, true)}>&larr; Previous</Pager.Item>
+        <Pager.Item previous disabled={!this.state.hasPrev} href="#" onClick={this.goto.bind(this, false)}>&larr; Previous</Pager.Item>
         <Pager.Item next disabled={!this.state.hasNext} href="#" onClick={this.goto.bind(this, true)}>Next &rarr;</Pager.Item>
       </Pager>
     </Panel>)

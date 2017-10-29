@@ -36,7 +36,7 @@ class SortIssues extends React.Component {
           direction: 'DESC'
         },
         {
-          name: 'Leasrt recently updated',
+          name: 'Least recently updated',
           order: 'UPDATED_AT',
           direction: 'ASC'
         }

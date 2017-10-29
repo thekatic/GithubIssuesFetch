@@ -30,5 +30,5 @@ Similar project:
 
 * Used purely documented react-apollo v2.0.0 with migration [notes](https://github.com/apollographql/apollo-client/blob/master/docs/source/2.0-migration.md)
 * Pager is implemented instead of pagination, due to GitHub GraphQl API v4 only supports cursor-based paging
-* Once issues are sorted, going a next page will throw <br>
+* Once issues are sorted, going on a next page, if Oldest or Most commented option is selected, will throw an error <br>
 `Something went wrong while executing your query. This is most likely a GitHub bug. Please include 98CE:3572:2CB66E8:53D56E4:59F596F0 when reporting this issue.`
