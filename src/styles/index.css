@@ -17,3 +17,7 @@ body {
   display: inline-block;
   margin-right: 7px;
 }
+
+.col-date {
+  width: 130px;
+}

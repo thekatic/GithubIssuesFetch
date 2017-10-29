@@ -168,7 +168,7 @@ class Issues extends React.Component {
             <th>Title</th>
             <th>State</th>
             <th>#Comments</th>
-            <th>Created at</th>
+            <th className="col-date">Created at</th>
           </tr>
         </thead>
         <tbody>
