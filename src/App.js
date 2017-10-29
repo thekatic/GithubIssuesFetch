@@ -48,6 +48,11 @@ class App extends Component {
     this.logged = this.logged.bind(this)
   }
 
+  alertOptions = {
+    position: 'bottom right',
+    time: 10000
+  }
+
   routeForIssues (login, name, perPage) {
     return {
       title: `${login}/${name}`,
@@ -87,7 +92,7 @@ class App extends Component {
 
     // Logged in, fetch from Github
     return <div>
-      <AlertContainer ref={a => window.msg = a} />
+      <AlertContainer ref={a => window.msg = a} {...this.alertOptions} />
       <PageHeader className="text-center">{title}</PageHeader>
       <Grid>
         <Row>
